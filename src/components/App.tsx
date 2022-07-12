@@ -1,9 +1,9 @@
 import React from 'react';
 import { Header } from './Header';
-import '../index.css';
 import { Profile } from './Profile';
 import { Footer } from './Footer';
 import { Cards } from './Cards';
+import '../index.css';
 
 
 function App() {

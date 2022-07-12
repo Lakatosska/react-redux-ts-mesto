@@ -1,30 +1,4 @@
-export const data = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
+//export const baseUrl = 'https://nomoreparties.co/v1/plus-cohort-6';
 export const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-6',
   headers: {
@@ -32,6 +6,14 @@ export const config = {
     'Content-Type': 'application/json'
   }
 };
+
+export const apiGetProfile = `${config.baseUrl}/users/me`;
+export const apiGetCards = `${config.baseUrl}/cards`;
+export const apiChangeAvatar = `${config.baseUrl}/users/me/avatar`;
+export const apiLikeCards = `${config.baseUrl}/cards/likes/${'id'}`;
+export const apiCards = `${config.baseUrl}//cards/${'id'}`;
+
+
 
 /*
 export default class Api {
