@@ -15,18 +15,23 @@ const initialState: CardState = {
   cards: []
 }
 
+interface CardsPayload {
+  cards: TCard[]
+}
+
 export const cardsSlice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
-    fetching(state) {
+    cardsFetching(state) {
       state.loading = true;
     },
-    fetchSuccess(state, action: PayloadAction<TCard[]>) {
+    cardsFetchingSuccess(state, action: PayloadAction<CardsPayload>) {
       state.loading = false;
-      state.cards = action.payload
+      state.error = '';
+      state.cards = action.payload.cards
     },
-    fetchError(state, action: PayloadAction<Error>) {
+    cardsFetchingError(state, action: PayloadAction<Error>) {
       state.loading = false;
       state.error = action.payload.message;
     }
