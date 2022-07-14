@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { data } from "../utils/constants";
+//import { data } from "../utils/constants";
 import { TCard } from '../utils/types';
 import { Card } from "./Card";
 

@@ -21,3 +21,21 @@ export type TCard = {
   },
 "createdAt": "2019-07-05T08:10:57.741Z"
 */
+
+export type TProfile = {
+  name: string;
+  about: string;
+  avatar: string;
+  _id: string;
+  cohort: string;
+}
+
+/*
+{
+  "name": "Jacques Cousteau",
+  "about": "Sailor, researcher",
+  "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
+  "_id": "e20537ed11237f86bbb20ccb",
+  "cohort": "cohort0"
+} 
+*/

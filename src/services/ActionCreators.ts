@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { cardsSlice } from './slices/cards';
+import { profileSlice } from './slices/profile';
 import { AppDispatch, AppThunk, useAppDispatch } from './store';
 import { apiGetCards } from '../utils/api';
 
@@ -20,6 +21,26 @@ export const fetchCards = () => {
       console.log(response.data)
     } catch (e) {
       dispatch(cardsSlice.actions.cardsFetchingError(e as Error))
+    }
+  }
+}
+
+export const fetchProfile = () => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(profileSlice.actions.profileFetching())
+      const response = await axios.get('https://nomoreparties.co/v1/plus-cohort-6//users/me', {
+        headers: {
+          authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
+        }
+      })
+      console.log(response)
+      dispatch(profileSlice.actions.profileFetchingSuccess({
+        profile: response.data
+      }))
+      console.log(response.data)
+    } catch (e) {
+      dispatch(profileSlice.actions.profileFetchingError(e as Error))
     }
   }
 }
