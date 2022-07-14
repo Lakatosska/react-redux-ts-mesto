@@ -13,10 +13,11 @@ export const fetchCards = () => {
           authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
         }
       })
+      console.log(response)
       dispatch(cardsSlice.actions.cardsFetchingSuccess({
-        cards: response.data.results,
+        cards: response.data
       }))
-      console.log(response.data.results)
+      console.log(response.data)
     } catch (e) {
       dispatch(cardsSlice.actions.cardsFetchingError(e as Error))
     }

@@ -12,7 +12,7 @@ export const Cards: FC<CardProps> = ({ cards }) => {
   return (
     <section className="cards">
       <ul className="cards__list">
-        {cards.map(item =>
+        {cards?.map(item =>
           <Card key={item._id} cardData={item} />
         )}
       </ul>

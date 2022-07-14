@@ -15,7 +15,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchCards)
+    dispatch(fetchCards())
   }, [])
 
   return (
