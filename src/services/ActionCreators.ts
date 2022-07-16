@@ -3,13 +3,14 @@ import { cardsSlice } from './slices/cards';
 import { profileSlice } from './slices/profile';
 import { AppDispatch, AppThunk, useAppDispatch } from './store';
 import { apiGetCards } from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 
 
 export const fetchCards = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(cardsSlice.actions.cardsFetching())
-      const response = await axios.get('https://nomoreparties.co/v1/plus-cohort-6/cards', {
+      const response = await axios.get(`${BASE_URL}/cards`, {
         headers: {
           authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
         }
@@ -29,7 +30,7 @@ export const fetchProfile = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(profileSlice.actions.profileFetching())
-      const response = await axios.get('https://nomoreparties.co/v1/plus-cohort-6//users/me', {
+      const response = await axios.get(`${BASE_URL}/users/me`, {
         headers: {
           authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
         }

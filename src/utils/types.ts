@@ -3,9 +3,20 @@ export type TCard = {
   _id: string;
   name: string;
   link: string;
-  owner: object;
+  owner: TProfile;
   createdAt: string;
 }
+
+/*
+export type TCard = {
+  likes: [];
+  _id: string;
+  name: string;
+  link: string;
+  owner: TProfile;
+  createdAt: string;
+}
+*/
 
 /*
 "likes": [],

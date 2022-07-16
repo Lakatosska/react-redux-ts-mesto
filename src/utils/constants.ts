@@ -31,3 +31,5 @@ export function checkResponse(res: Response) {
   }
   return Promise.reject(`Ошибка: ${res.status}`);
 }
+
+export const BASE_URL = 'https://nomoreparties.co/v1/plus-cohort-6';
