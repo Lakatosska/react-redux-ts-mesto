@@ -1,6 +1,8 @@
 .header {
   min-height: 74px;
   border-bottom: 1px solid #545454;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 619px) {

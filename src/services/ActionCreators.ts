@@ -6,6 +6,8 @@ import { apiGetCards } from '../utils/api';
 import { BASE_URL } from '../utils/constants';
 
 
+
+
 export const fetchCards = () => {
   return async (dispatch: AppDispatch) => {
     try {
@@ -46,58 +48,25 @@ export const fetchProfile = () => {
   }
 }
 
-
-/*
-export const getCardsRequest = (url: string) => {
-  return axios({
-    method: 'GET',
-    url: url,
+export const deleteCard = (cardId: any) => {
+  return fetch(`${BASE_URL}/cards/${cardId}`, {
+    method: 'DELETE',
     headers: {
       authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
-    },
-  });
-}
-
-export const getCardsData = (url: string): AppThunk => {
-  return function (dispatch) {
-    getCardsRequest(url)
-    .then(data =>
-      console.log(data.data)) 
-
-    .catch(error => console.log(error))
-  }
-}
-export const fetchCards = (url: string) => {
-  return async (dispatch: AppDispatch) => {
-    try {
-      dispatch(cardsSlice.actions.fetching())
-      const response = await axios.get({
-        url: url,
-        headers: {
-          authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
-        }
-      })
-
-      console.log(response)
-
-      dispatch(cardsSlice.actions.fetchSuccess(
-        response.data.results
-      ))
     }
-    catch (e) {
-     dispatch(cardsSlice.actions.fetchError(e as Error))
-    }
-  }
+  })
 }
-*/
+
 
 
 /*
-console.log(fetchCards('https://nomoreparties.co/v1/plus-cohort-6/cards'))
-url: '/cards',
-        baseURL: 'https://nomoreparties.co/v1/plus-cohort-6',
-        headers: {
-          authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
-          'Content-Type': 'application/json'
-        }
+DELETE https://nomoreparties.co/v1/cohortId/cards/cardId 
+Вместо cardId в URL нужно подставить параметр _id карточки, которую нужно удалить. _id каждой карточки есть в её JSON:
+{
+  "likes": [],
+  "_id": "5d1f0611d321eb4bdcd707dd", — вот он
+  ...другие данные карточки
+} 
+В результате запрос на удаление этой карточки должен выглядеть так:
+DELETE https://nomoreparties.co/v1/cohortId/cards/5d1f0611d321eb4bdcd707dd 
 */

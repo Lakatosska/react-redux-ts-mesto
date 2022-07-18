@@ -19,6 +19,12 @@ interface CardsPayload {
   cards: TCard[]
 }
 
+
+interface CardPayload {
+  card: TCard
+}
+
+
 export const cardsSlice = createSlice({
   name: 'cards',
   initialState,
@@ -34,9 +40,21 @@ export const cardsSlice = createSlice({
     cardsFetchingError(state, action: PayloadAction<Error>) {
       state.loading = false;
       state.error = action.payload.message;
+    },
+    
+    deleteCard(state, action: PayloadAction<CardPayload>) {
+      state.cards = [...state.cards].filter(item => item._id !== action.payload.card._id)
     }
+    
   }
 });
+
+export const {
+  cardsFetching,
+  cardsFetchingSuccess,
+  cardsFetchingError,
+  deleteCard
+} = cardsSlice.actions;
 
 export const cardsReducer = cardsSlice.reducer;
 
