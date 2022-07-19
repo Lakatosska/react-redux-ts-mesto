@@ -16,7 +16,7 @@ export const Header: FC = () => {
           <li className='header__link'>
             <NavLink to='/' 
               className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.active_link : ''}`
+                `${styles.link} ${isActive ? styles.active_link : ''}`
               }>
               Главная
             </NavLink>
@@ -26,7 +26,7 @@ export const Header: FC = () => {
           <li className='header__link'>
             <NavLink to='/about' 
               className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.active_link : ''}`
+                `${styles.link} ${isActive ? styles.active_link : ''}`
               }>
               Обо мне
             </NavLink>

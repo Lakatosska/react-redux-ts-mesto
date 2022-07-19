@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
 import { useAppSelector } from '../services/store';
 import { TCard } from '../utils/types';
-import { deleteCard } from '../services/ActionCreators';
+import { deleteCard} from '../utils/api';
+import { deleteCardAction } from '../services/ActionCreators';
 import { AppDispatch, AppThunk, useAppDispatch } from '../services/store';
-
+import { fetchCards } from '../services/ActionCreators';
 
 
 interface ICardData {
@@ -15,13 +16,15 @@ export const Card: FC<ICardData> = ({ cardData }) => {
   //const [ ActionTrashButton, setActionTrashButton ] = useState(false);
 
   const { profile } = useAppSelector(state => state.profileReducer);
-  const { cards } = useAppSelector(state => state.cardsReducer);
+  //const { cards } = useAppSelector(state => state.cardsReducer);
+
+  //const [cards, setCards] = useState([]);
 
   const dispatch = useAppDispatch();
 
   const handleDeleteCard = (cardId: string) => {
-    deleteCard(cardId)
-    //dispatch(deleteCard)
+    dispatch(deleteCardAction(cardId))
+    //fetchCards()
   }
 
   /*

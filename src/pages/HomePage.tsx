@@ -3,6 +3,7 @@ import { Profile } from "../components/Profile";
 import { Cards } from "../components/Cards";
 import { useAppSelector, useAppDispatch } from "../services/store";
 import { fetchCards, fetchProfile } from "../services/ActionCreators";
+import { deleteCard } from "../utils/api";
 //import { deleteCard } from "../services/ActionCreators";
 
 export const HomePage: FC = () => {
@@ -14,7 +15,7 @@ export const HomePage: FC = () => {
 
   useEffect(() => {
     dispatch(fetchCards())
-  }, [])
+  }, [dispatch])
 
   useEffect(()=>{
     dispatch(fetchProfile())

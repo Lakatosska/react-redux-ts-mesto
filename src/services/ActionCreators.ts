@@ -2,17 +2,17 @@ import axios from 'axios';
 import { cardsSlice } from './slices/cards';
 import { profileSlice } from './slices/profile';
 import { AppDispatch, AppThunk, useAppDispatch } from './store';
-import { apiGetCards } from '../utils/api';
 import { BASE_URL } from '../utils/constants';
 
-
-
+const api = axios.create({
+  baseURL: `https://nomoreparties.co/v1/plus-cohort-6`
+});
 
 export const fetchCards = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(cardsSlice.actions.cardsFetching())
-      const response = await axios.get(`${BASE_URL}/cards`, {
+      const response = await api.get(`/cards`, {
         headers: {
           authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
         }
@@ -32,7 +32,7 @@ export const fetchProfile = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(profileSlice.actions.profileFetching())
-      const response = await axios.get(`${BASE_URL}/users/me`, {
+      const response = await api.get(`/users/me`, {
         headers: {
           authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
         }
@@ -48,14 +48,26 @@ export const fetchProfile = () => {
   }
 }
 
-export const deleteCard = (cardId: any) => {
-  return fetch(`${BASE_URL}/cards/${cardId}`, {
-    method: 'DELETE',
-    headers: {
-      authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
+// не работает
+export const deleteCardAction = (cardId: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const response = await axios.delete(`${BASE_URL}/cards/${cardId}`, {
+        headers: {
+          authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
+        }
+      })
+      console.log(response)
+      
+      dispatch(cardsSlice.actions.deleteCardAction)
+      
+      //console.log(response.data)
+    } catch (e) {
+      dispatch(cardsSlice.actions.deleteCardError(e as Error))
     }
-  })
-}
+  }
+};
+
 
 
 
