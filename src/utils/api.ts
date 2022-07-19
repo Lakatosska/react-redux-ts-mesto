@@ -1,4 +1,5 @@
-//export const baseUrl = 'https://nomoreparties.co/v1/plus-cohort-6';
+import { BASE_URL } from "./constants";
+
 export const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-6',
   headers: {
@@ -7,13 +8,14 @@ export const config = {
   }
 };
 
-export const apiGetProfile = `${config.baseUrl}/users/me`;
-export const apiGetCards = `${config.baseUrl}/cards`;
-export const apiChangeAvatar = `${config.baseUrl}/users/me/avatar`;
-export const apiLikeCards = `${config.baseUrl}/cards/likes/${'id'}`;
-export const apiCards = `${config.baseUrl}/cards/${'id'}`;
-
-
+export const deleteCard = (cardId: any) => {
+  return fetch(`${BASE_URL}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
+    }
+  })
+}
 
 /*
 GET https://nomoreparties.co/v1/cohortId/users/me 
@@ -246,4 +248,11 @@ fetch('https://nomoreparties.co/v1/plus-cohort-6/cards', {
   .then((result) => {
     console.log(result);
 });
+
+
+export const apiGetProfile = `${config.baseUrl}/users/me`;
+export const apiGetCards = `${config.baseUrl}/cards`;
+export const apiChangeAvatar = `${config.baseUrl}/users/me/avatar`;
+export const apiLikeCards = `${config.baseUrl}/cards/likes/${'id'}`;
+export const apiCards = `${config.baseUrl}/cards/${'id'}`;
 */

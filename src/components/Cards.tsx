@@ -2,12 +2,11 @@ import { FC } from 'react';
 //import { data } from "../utils/constants";
 import { TCard } from '../utils/types';
 import { Card } from "./Card";
+import { useAppSelector } from '../services/store';
 
-interface CardProps {
-  cards: TCard[]
-}
+export const Cards: FC = () => {
 
-export const Cards: FC<CardProps> = ({ cards }) => {
+  const { cards } = useAppSelector(state => state.cardsReducer);
 
   return (
     <section className="cards">

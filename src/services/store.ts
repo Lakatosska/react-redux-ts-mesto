@@ -3,12 +3,12 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { cardsReducer } from './slices/cards';
 import { profileReducer } from './slices/profile';
 import { ThunkAction } from '@reduxjs/toolkit';
+//import { cardsSlice.actions }
 
 export const rootReducer = combineReducers({
   cardsReducer,
   profileReducer
-})
-
+});
 
 export const store = configureStore({
   reducer: rootReducer,

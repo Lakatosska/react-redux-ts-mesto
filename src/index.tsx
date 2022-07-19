@@ -4,6 +4,7 @@ import './index.css';
 import App from './components/App';
 import { store } from './services/store';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 
 const root = ReactDOM.createRoot(
@@ -11,9 +12,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 );
 
 /*
@@ -23,11 +26,11 @@ npx create-react-app --template typescript .
 npm i @reduxjs/toolkit
 npm i react-redux
 npm i axios
+npm i react-router-dom
 
 ______
 не устанавливала:
 redux-saga
-npm i react-router-dom
 redux-thunk - уже встроен в @reduxjs/toolkit
 redux 
 react-dnd 

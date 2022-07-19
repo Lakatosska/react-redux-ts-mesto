@@ -1,30 +1,32 @@
-import React,{ useEffect } from 'react';
+import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Header } from './Header';
-import { Profile } from './Profile';
 import { Footer } from './Footer';
-import { Cards } from './Cards';
 import '../index.css';
-import { useAppDispatch, useAppSelector } from '../services/store';
+import { HomePage, AboutPage, PlacesPage } from '../pages';
+import { useAppDispatch } from '../services/store';
 import { fetchCards, fetchProfile } from '../services/ActionCreators';
 
-
 function App() {
-
-  const { cards } = useAppSelector(state => state.cardsReducer);
-  const { profile } = useAppSelector(state => state.profileReducer);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchCards())
-    dispatch(fetchProfile())
   }, [])
+
+  useEffect(()=>{
+    dispatch(fetchProfile())
+  },[])
 
   return (
     <div className='root page'>
       <Header />
-      <Profile profile={profile}/>
-      <Cards cards={cards}/>
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/about' element={<AboutPage />} />
+        <Route path='/places' element={<PlacesPage /> } />
+      </Routes>
       <Footer />
     </div>
   );

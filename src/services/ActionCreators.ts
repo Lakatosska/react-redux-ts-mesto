@@ -2,14 +2,17 @@ import axios from 'axios';
 import { cardsSlice } from './slices/cards';
 import { profileSlice } from './slices/profile';
 import { AppDispatch, AppThunk, useAppDispatch } from './store';
-import { apiGetCards } from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 
+const api = axios.create({
+  baseURL: `https://nomoreparties.co/v1/plus-cohort-6`
+});
 
 export const fetchCards = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(cardsSlice.actions.cardsFetching())
-      const response = await axios.get('https://nomoreparties.co/v1/plus-cohort-6/cards', {
+      const response = await api.get(`/cards`, {
         headers: {
           authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
         }
@@ -29,7 +32,7 @@ export const fetchProfile = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(profileSlice.actions.profileFetching())
-      const response = await axios.get('https://nomoreparties.co/v1/plus-cohort-6//users/me', {
+      const response = await api.get(`/users/me`, {
         headers: {
           authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
         }
@@ -45,58 +48,37 @@ export const fetchProfile = () => {
   }
 }
 
-
-/*
-export const getCardsRequest = (url: string) => {
-  return axios({
-    method: 'GET',
-    url: url,
-    headers: {
-      authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
-    },
-  });
-}
-
-export const getCardsData = (url: string): AppThunk => {
-  return function (dispatch) {
-    getCardsRequest(url)
-    .then(data =>
-      console.log(data.data)) 
-
-    .catch(error => console.log(error))
-  }
-}
-export const fetchCards = (url: string) => {
+// не работает
+export const deleteCardAction = (cardId: string) => {
   return async (dispatch: AppDispatch) => {
     try {
-      dispatch(cardsSlice.actions.fetching())
-      const response = await axios.get({
-        url: url,
+      const response = await axios.delete(`${BASE_URL}/cards/${cardId}`, {
         headers: {
           authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
         }
       })
-
       console.log(response)
-
-      dispatch(cardsSlice.actions.fetchSuccess(
-        response.data.results
-      ))
-    }
-    catch (e) {
-     dispatch(cardsSlice.actions.fetchError(e as Error))
+      
+      dispatch(cardsSlice.actions.deleteCardAction)
+      
+      //console.log(response.data)
+    } catch (e) {
+      dispatch(cardsSlice.actions.deleteCardError(e as Error))
     }
   }
-}
-*/
+};
+
+
 
 
 /*
-console.log(fetchCards('https://nomoreparties.co/v1/plus-cohort-6/cards'))
-url: '/cards',
-        baseURL: 'https://nomoreparties.co/v1/plus-cohort-6',
-        headers: {
-          authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
-          'Content-Type': 'application/json'
-        }
+DELETE https://nomoreparties.co/v1/cohortId/cards/cardId 
+Вместо cardId в URL нужно подставить параметр _id карточки, которую нужно удалить. _id каждой карточки есть в её JSON:
+{
+  "likes": [],
+  "_id": "5d1f0611d321eb4bdcd707dd", — вот он
+  ...другие данные карточки
+} 
+В результате запрос на удаление этой карточки должен выглядеть так:
+DELETE https://nomoreparties.co/v1/cohortId/cards/5d1f0611d321eb4bdcd707dd 
 */
