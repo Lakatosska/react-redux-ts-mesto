@@ -4,8 +4,20 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import '../index.css';
 import { HomePage, AboutPage, PlacesPage } from '../pages';
+import { useAppDispatch } from '../services/store';
+import { fetchCards, fetchProfile } from '../services/ActionCreators';
 
 function App() {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCards())
+  }, [])
+
+  useEffect(()=>{
+    dispatch(fetchProfile())
+  },[])
 
   return (
     <div className='root page'>

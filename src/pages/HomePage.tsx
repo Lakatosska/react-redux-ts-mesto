@@ -8,23 +8,10 @@ import { deleteCard } from "../utils/api";
 
 export const HomePage: FC = () => {
 
-  const { cards } = useAppSelector(state => state.cardsReducer);
-  const { profile } = useAppSelector(state => state.profileReducer);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCards())
-  }, [dispatch])
-
-  useEffect(()=>{
-    dispatch(fetchProfile())
-  },[])
-
   return (
     <>
-      <Profile profile={profile}/>
-      <Cards cards={cards}/>
+      <Profile />
+      <Cards />
     </>
   );
 };

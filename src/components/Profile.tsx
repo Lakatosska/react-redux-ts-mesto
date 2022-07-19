@@ -1,12 +1,12 @@
 import { FC } from 'react';
 //import photo from '../images/photo-profile.jpg'
 import { TProfile } from '../utils/types';
+import { useAppSelector } from '../services/store';
 
-interface ProfileProps {
-  profile: TProfile
-}
 
-export const Profile: FC<ProfileProps> = ({ profile }) => {
+export const Profile: FC = () => {
+
+  const { profile } = useAppSelector(state => state.profileReducer);
 
   return (
     <section className='profile'>
