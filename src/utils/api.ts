@@ -8,6 +8,7 @@ export const config = {
   }
 };
 
+/*
 export const deleteCard = (cardId: any) => {
   return fetch(`${BASE_URL}/cards/${cardId}`, {
     method: 'DELETE',
@@ -17,7 +18,6 @@ export const deleteCard = (cardId: any) => {
   })
 }
 
-/*
 GET https://nomoreparties.co/v1/cohortId/users/me 
 {
   "name": "Jacques Cousteau",

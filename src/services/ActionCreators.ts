@@ -5,18 +5,17 @@ import { AppDispatch, AppThunk, useAppDispatch } from './store';
 import { BASE_URL } from '../utils/constants';
 
 const api = axios.create({
-  baseURL: `https://nomoreparties.co/v1/plus-cohort-6`
+  baseURL: `https://nomoreparties.co/v1/plus-cohort-6`,
+  headers: {
+    authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
+  }
 });
 
 export const fetchCards = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(cardsSlice.actions.cardsFetching())
-      const response = await api.get(`/cards`, {
-        headers: {
-          authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
-        }
-      })
+      const response = await api.get(`/cards`)
       console.log(response)
       dispatch(cardsSlice.actions.cardsFetchingSuccess({
         cards: response.data
@@ -32,11 +31,7 @@ export const fetchProfile = () => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(profileSlice.actions.profileFetching())
-      const response = await api.get(`/users/me`, {
-        headers: {
-          authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
-        }
-      })
+      const response = await api.get(`/users/me`)
       console.log(response)
       dispatch(profileSlice.actions.profileFetchingSuccess({
         profile: response.data
@@ -48,15 +43,10 @@ export const fetchProfile = () => {
   }
 }
 
-// не работает
 export const deleteCardAction = (cardId: string) => {
   return async (dispatch: AppDispatch) => {
     try {
-      const response = await axios.delete(`${BASE_URL}/cards/${cardId}`, {
-        headers: {
-          authorization: 'f4364e86-dc65-4e42-997a-34b37541ff0c',
-        }
-      })
+      const response = await api.delete(`/cards/${cardId}`)
       console.log(response)
       
       dispatch(cardsSlice.actions.deleteCardAction)

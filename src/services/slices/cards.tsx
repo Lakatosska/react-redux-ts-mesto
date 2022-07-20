@@ -3,13 +3,13 @@ import { TCard } from '../../utils/types';
 import { useAppDispatch } from '../store';
 
 
-interface CardState {
+interface CardsState {
   loading: boolean,
   error: string,
   cards: TCard[]
 };
 
-const initialState: CardState = {
+const initialState: CardsState = {
   loading: false,
   error: '',
   cards: []
@@ -44,8 +44,7 @@ export const cardsSlice = createSlice({
     },
     deleteCardError(state, action: PayloadAction<Error>) {
       state.error = action.payload.message;
-    },
-    
+    },   
   }
 });
 
@@ -57,5 +56,5 @@ export const {
   deleteCardError
 } = cardsSlice.actions;
 
-export const cardsReducer = cardsSlice.reducer;
+export default cardsSlice.reducer;
 
