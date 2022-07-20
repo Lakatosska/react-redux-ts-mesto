@@ -1,13 +1,16 @@
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import { cardsReducer } from './slices/cards';
-import { profileReducer } from './slices/profile';
+import cardsReducer from './slices/cards';
+import profileReducer from './slices/profile';
+import cardReducer from './slices/card';
 import { ThunkAction } from '@reduxjs/toolkit';
 //import { cardsSlice.actions }
 
 export const rootReducer = combineReducers({
   cardsReducer,
-  profileReducer
+  profileReducer,
+  cardReducer
+  
 });
 
 export const store = configureStore({

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
@@ -6,8 +6,12 @@ import '../index.css';
 import { HomePage, AboutPage, PlacesPage } from '../pages';
 import { useAppDispatch } from '../services/store';
 import { fetchCards, fetchProfile } from '../services/ActionCreators';
+import { PopupImage } from './PopupImage';
+import { TCard } from '../utils/types';
 
 function App() {
+
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const dispatch = useAppDispatch();
 
@@ -19,6 +23,12 @@ function App() {
     dispatch(fetchProfile())
   },[])
 
+  /*
+  function handleCardClick(card: TCard) {
+    setSelectedCard(card);
+  }
+  */
+
   return (
     <div className='root page'>
       <Header />
@@ -28,6 +38,7 @@ function App() {
         <Route path='/places' element={<PlacesPage /> } />
       </Routes>
       <Footer />
+      {/* <PopupImage /> */}
     </div>
   );
 };

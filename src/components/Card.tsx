@@ -1,10 +1,13 @@
 import { FC, useState } from 'react';
 import { useAppSelector } from '../services/store';
 import { TCard } from '../utils/types';
-import { deleteCard} from '../utils/api';
+//import { deleteCard} from '../utils/api';
 import { deleteCardAction } from '../services/ActionCreators';
 import { AppDispatch, AppThunk, useAppDispatch } from '../services/store';
 import { fetchCards } from '../services/ActionCreators';
+//import { openPopupImageAction } from '../services/slices/cards';
+import { cardSlice } from '../services/slices/card';
+import { PopupImage } from './PopupImage';
 
 
 interface ICardData {
@@ -24,8 +27,15 @@ export const Card: FC<ICardData> = ({ cardData }) => {
 
   const handleDeleteCard = (cardId: string) => {
     dispatch(deleteCardAction(cardId))
-    //fetchCards()
+    dispatch(fetchCards())
   }
+
+  const openPopupImage = (cardData: TCard) => {
+    dispatch(cardSlice.actions.openPopupImageAction)
+    PopupImage(cardData)
+  }
+
+
 
   /*
   const isOwn = cardData.owner._id === profile._id;
@@ -43,10 +53,14 @@ export const Card: FC<ICardData> = ({ cardData }) => {
 
   return (
     <li className="card">
-      <img className="card__photo" src={cardData.link} alt="фото достопримечательности" />
+      <img className="card__photo" src={cardData.link} alt="фото достопримечательности" 
+        onClick={()=>openPopupImage(cardData)}
+      />
+      
      
       {isOwn && 
-        (<button type="button" className="card__trash-button" onClick={()=>handleDeleteCard(cardData._id)}>
+        (<button type="button" className="card__trash-button" 
+          onClick={()=>handleDeleteCard(cardData._id)}>
         </button>)}
 
       <div className="card__info">
