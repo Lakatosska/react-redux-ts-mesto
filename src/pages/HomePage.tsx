@@ -3,6 +3,7 @@ import { Profile } from "../components/Profile";
 import { Cards } from "../components/Cards";
 import { useAppSelector, useAppDispatch } from "../services/store";
 import { fetchCards, fetchProfile } from "../services/ActionCreators";
+import { PopupImage } from "../components/PopupImage";
 //import { deleteCard } from "../utils/api";
 //import { deleteCard } from "../services/ActionCreators";
 
