@@ -37,7 +37,7 @@ function App() {
         <Route path='/places' element={<PlacesPage /> } />
       </Routes>
       <Footer />
-      <PopupImage /> 
+      {/*  <PopupImage /> */}
     </div>
   );
 };
