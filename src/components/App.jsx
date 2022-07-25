@@ -8,6 +8,8 @@ import { useAppDispatch } from '../services/store';
 import { fetchCards, fetchProfile } from '../services/ActionCreators';
 import { PopupImage } from './PopupImage';
 import { TCard } from '../utils/types';
+import card from '../services/slices/card';
+
 
 function App() {
 
@@ -23,11 +25,8 @@ function App() {
     dispatch(fetchProfile())
   },[])
 
-  /*
-  function handleCardClick(card: TCard) {
-    setSelectedCard(card);
-  }
-  */
+  
+
 
   return (
     <div className='root page'>
@@ -38,7 +37,7 @@ function App() {
         <Route path='/places' element={<PlacesPage /> } />
       </Routes>
       <Footer />
-      {/* <PopupImage /> */}
+      <PopupImage /> 
     </div>
   );
 };
