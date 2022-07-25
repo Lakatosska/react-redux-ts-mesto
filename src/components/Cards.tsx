@@ -7,7 +7,6 @@ import { useAppSelector } from '../services/store';
 export const Cards: FC = () => {
 
   const { cards } = useAppSelector(state => state.cardsReducer);
-  console.log("component is rerendered");
 
   return (
     <section className="cards">

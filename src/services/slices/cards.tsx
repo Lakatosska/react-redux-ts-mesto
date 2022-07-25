@@ -23,6 +23,10 @@ interface CardPayload {
   card: TCard
 };
 
+interface CardDeletePayload {
+  cardId: string
+};
+
 export const cardsSlice = createSlice({
   name: 'cards',
   initialState,
@@ -39,8 +43,8 @@ export const cardsSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
-    deleteCardAction(state, action: PayloadAction<CardPayload>) {
-      state.cards = [...state.cards].filter(item => item._id !== action.payload.card._id)
+    deleteCardAction(state, action: PayloadAction<CardDeletePayload>) {
+      state.cards = [...state.cards].filter(item => item._id !== action.payload.cardId)
     },
     deleteCardError(state, action: PayloadAction<Error>) {
       state.error = action.payload.message;

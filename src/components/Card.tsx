@@ -27,27 +27,13 @@ export const Card: FC<ICardData> = ({ cardData }) => {
 
   const handleDeleteCard = (cardId: string) => {
     dispatch(deleteCardAction(cardId))
-    dispatch(fetchCards())
   }
 
   const openPopupImage = (cardData: TCard) => {
-    dispatch(cardSlice.actions.openPopupImageAction)
+    //dispatch(cardSlice.actions.openPopupImageAction)
     PopupImage(cardData)
+    console.log(cardData)
   }
-
-
-
-  /*
-  const isOwn = cardData.owner._id === profile._id;
-  if (isOwn) { 
-    setActionTrashButton(true) 
-  }
-    return (
-    ...
-      {ActionTrashButton &&
-      (<button type="button" className="card__trash-button"></button>)}
-    ...
-  */
 
   const isOwn = cardData.owner._id === profile._id;
 
