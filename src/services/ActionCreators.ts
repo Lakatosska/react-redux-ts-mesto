@@ -46,20 +46,13 @@ export const fetchProfile = () => {
 export const deleteCardAction = (cardId: string) => {
   return async (dispatch: AppDispatch) => {
     try {
-      const response = await api.delete(`/cards/${cardId}`)
-      console.log(response)
-      
-      dispatch(cardsSlice.actions.deleteCardAction)
-      
-      
-      //console.log(response.data)
+      await api.delete(`/cards/${cardId}`)
+      dispatch(cardsSlice.actions.deleteCardAction({cardId}))
     } catch (e) {
       dispatch(cardsSlice.actions.deleteCardError(e as Error))
     }
   }
 };
-
-
 
 
 /*

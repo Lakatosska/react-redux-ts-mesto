@@ -27,7 +27,7 @@ export const Card: FC<ICardData> = ({ cardData }) => {
 
   const handleDeleteCard = (cardId: string) => {
     dispatch(deleteCardAction(cardId))
-    dispatch(fetchCards())
+    //dispatch(fetchCards())
   }
 
   const openPopupImage = (cardData: TCard) => {
